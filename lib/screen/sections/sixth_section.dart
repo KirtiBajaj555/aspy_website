@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constant/color.dart';
 
 class SixthSection extends StatefulWidget {
-  const SixthSection({super.key});
+  const SixthSection({Key? key}) : super(key: key);
 
   @override
   State<SixthSection> createState() => _SixthSectionState();
@@ -67,10 +67,10 @@ class _SixthSectionState extends State<SixthSection>
                   child: const Text(
                     'NEWS',
                     style: TextStyle(
-                      fontFamily: 'CH',
+                      fontFamily: 'RO',
                       fontSize: 18,
                       fontWeight: FontWeight.normal,
-                      color: AppColors.secondaryColor,
+                      color: AppColors.darkColor,
                     ),
                   ),
                 ),
@@ -80,10 +80,10 @@ class _SixthSectionState extends State<SixthSection>
                   child: const Text(
                     'Dive into Our Dynamics Feed',
                     style: TextStyle(
-                      fontFamily: 'CH',
+                      fontFamily: 'RO',
                       fontSize: 38,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.darkColor,
                     ),
                   ),
                 ),

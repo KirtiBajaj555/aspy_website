@@ -1,6 +1,7 @@
 import '/constant/color.dart';
 import '/screen/widget/text_transform.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../widget/text_reveal.dart';
 
@@ -74,7 +75,7 @@ class _FirstSectionState extends State<FirstSection>
                     child: const Text(
                       'Trusted ',
                       style: TextStyle(
-                          fontFamily: 'CH',
+                          fontFamily: 'RO',
                           fontSize: 45,
                           color: Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.w800),
@@ -88,7 +89,7 @@ class _FirstSectionState extends State<FirstSection>
                     child: const Text(
                       'Preservation',
                       style: TextStyle(
-                          fontFamily: 'CH',
+                          fontFamily: 'RO',
                           fontSize: 45,
                           color: Color.fromARGB(255, 3, 3, 3),
                           fontWeight: FontWeight.w800),
@@ -103,9 +104,9 @@ class _FirstSectionState extends State<FirstSection>
                     textOpacityAnimation: textOpacityAnimation,
                     //textRevealAnimation: textRevealAnimation,
                     child: const Text(
-                      'Lorem ipsum dolor sit amet consectetur. Duis morbi scelerisque lectus sodales rhoncus.',
+                      'Simplifying Numbers. Amplifying Growth..',
                       style: TextStyle(
-                          fontFamily: 'CH',
+                          fontFamily: 'RO',
                           fontSize: 13,
                           color: Color.fromARGB(255, 18, 18, 18),
                           fontWeight: FontWeight.w200),
@@ -114,45 +115,7 @@ class _FirstSectionState extends State<FirstSection>
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(150, 50),
-                            backgroundColor: AppColors.secondaryColor),
-                        child: const Text(
-                          'Get Started',
-                          style: TextStyle(
-                            fontFamily: 'CH',
-                            fontSize: 13,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(150, 50),
-                            backgroundColor: Colors.transparent,
-                            side: const BorderSide(
-                                color: AppColors.secondaryColor)),
-                        child: const Text(
-                          'Learn more',
-                          style: TextStyle(
-                            fontFamily: 'CH',
-                            fontSize: 13,
-                            color: AppColors.secondaryColor,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                 
                 ],
               ),
             ),
@@ -234,12 +197,13 @@ class _FirstPageImageState extends State<FirstPageImage>
         );
       },
       child: Transform.scale(
-        scale: 1,
-        child: Image.asset(
-          'assets/images/logo.png',
-          fit: BoxFit.cover,
-        ),
-      ),
+      scale: 0.8,
+      child: Lottie.asset(
+        'assets/images/Main Scene.json',
+       fit: BoxFit.cover,
+  ),
+),
+
     );
   }
 }

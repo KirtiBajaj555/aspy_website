@@ -102,10 +102,10 @@ class _FifthSectionState extends State<FifthSection>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextReveal(
-                          maxHeight: 200,
+                          maxHeight: 300,
                           controller: controller,
                           child: const Text(
-                            'PRICE',
+                            'Visit us',
                             style: TextStyle(
                               fontSize: 20,
                               fontFamily: 'CH',
@@ -123,7 +123,7 @@ class _FifthSectionState extends State<FifthSection>
                               fontSize: 38,
                               fontFamily: 'CH',
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -136,34 +136,14 @@ class _FifthSectionState extends State<FifthSection>
                               fontSize: 38,
                               fontFamily: 'CH',
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 40,
                         ),
-                        TextReveal(
-                          maxHeight: 50,
-                          controller: controller,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(150, 50),
-                                backgroundColor: Colors.transparent,
-                                side: const BorderSide(
-                                    color: AppColors.secondaryColor)),
-                            child: const Text(
-                              'Learn more',
-                              style: TextStyle(
-                                fontFamily: 'CH',
-                                fontSize: 13,
-                                color: AppColors.secondaryColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        )
+                        
                       ],
                     ),
                   );
@@ -173,16 +153,8 @@ class _FifthSectionState extends State<FifthSection>
             Expanded(
               child: Row(
                 children: [
-                  planCard(
-                    planAnimation,
-                    Colors.white,
-                    AppColors.scaffoldColor,
-                    AppColors.secondaryColor,
-                    'Basic Edition',
-                    '\$600 / prj',
-                  ),
                   const SizedBox(
-                    width: 20,
+                    width: 30,
                   ),
                   planCard(
                       planAnimation,

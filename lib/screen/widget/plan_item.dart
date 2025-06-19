@@ -21,7 +21,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
           Text(
             text,
             style: TextStyle(
-              fontFamily: 'CH',
+              fontFamily: 'RO',
               color: textColor,
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -33,7 +33,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
           Text(
             price,
             style: TextStyle(
-              fontFamily: 'CH',
+              fontFamily: 'RO',
               color: textColor,
               fontSize: 38,
               fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
             child: Text(
               'Lorem ipsum dolor sit amet consectetur. Eu eget ornare.',
               style: TextStyle(
-                fontFamily: 'CH',
+                fontFamily: 'RO',
                 color: textColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
@@ -70,7 +70,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
                 label: Text(
                   'Lorem ipsum dolor',
                   style: TextStyle(
-                    fontFamily: 'CH',
+                    fontFamily: 'RO',
                     color: textColor,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -87,7 +87,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
                 label: Text(
                   'Lorem ipsum dolor',
                   style: TextStyle(
-                    fontFamily: 'CH',
+                    fontFamily: 'RO',
                     color: textColor,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -104,7 +104,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
                 label: Text(
                   'Lorem ipsum dolor',
                   style: TextStyle(
-                    fontFamily: 'CH',
+                    fontFamily: 'RO',
                     color: textColor,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -124,7 +124,7 @@ Widget planCard(Animation<double> planAnimation, Color textColor,
                 child: const Text(
                   'Get Started',
                   style: TextStyle(
-                    fontFamily: 'CH',
+                    fontFamily: 'RO',
                     fontSize: 13,
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.w500,

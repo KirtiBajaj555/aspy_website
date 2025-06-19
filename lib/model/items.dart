@@ -11,33 +11,33 @@ class Item {
 
 List<Item> items = [
   Item(
-      image: 'assets/images/item1.png',
-      title: 'Blockchain Development',
+      image: 'assets/images/online-tax.png',
+      title: 'Taxation',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.'),
+          'Comprehensive solutions for direct and indirect taxes including tax planning, filing, representation, and advisory.'),
   Item(
-      image: 'assets/images/item2.png',
-      title: 'Smart Contract Development',
+      image: 'assets/images/earning.png',
+      title: 'Company Incorporation & Compliance',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.'),
+          'Assistance with company formation, ROC filings, secretarial compliance, and regulatory adherence under the Companies Act.'),
   Item(
-      image: 'assets/images/item3.png',
-      title: 'Tokenization Services',
+      image: 'assets/images/trend.png',
+      title: 'Financial & Business Advisory',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.'),
+          'Strategic advice for business growth, financial restructuring, budgeting, and performance analysis.'),
   Item(
-      image: 'assets/images/item4.png',
-      title: 'Cryptocurrency Solutions',
+      image: 'assets/images/stats.png',
+      title: 'Valuation Services',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.'),
+          'Business, asset, and share valuation for mergers, acquisitions, regulatory needs, or investment planning.'),
   Item(
-      image: 'assets/images/item5.png',
-      title: 'Security and Compliance',
+      image: 'assets/images/check-list.png',
+      title: 'Audit',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.'),
+          'Enhancing financial transparency through statutory, internal, and management audits to ensure compliance and build stakeholder trust.'),
   Item(
-      image: 'assets/images/item6.png',
-      title: 'Tokenization Services',
+      image: 'assets/images/discussion.png',
+      title: 'Internal Controls & Risk Management',
       subtitle:
-          'Lorem ipsum dolor sit amet consectetur. Aliquam id volutpat enim risus. Felis enim consectetur habitant mi nam nullam.')
+          'Designing and reviewing internal controls to mitigate risk, enhance efficiency, and ensure operational integrity.')
 ];

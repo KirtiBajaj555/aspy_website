@@ -12,11 +12,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ASPY',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
       ),
@@ -33,99 +33,94 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Section keys
+  final aboutKey = GlobalKey();
+  final servicesKey = GlobalKey();
+  final sectorsKey = GlobalKey();
+  final contactKey = GlobalKey();
+
+  void scrollToSection(GlobalKey key) {
+    final ctx = key.currentContext;
+    if (ctx != null) {
+      Scrollable.ensureVisible(
+        ctx,
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 420,
-        backgroundColor: AppColors.scaffoldColor,
+        backgroundColor: AppColors.secondaryColor,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: SizedBox(
             height: 200,
             child: Image.asset(
-              'assets/images/horizontal.png',
+              'assets/images/ASPY.png',
               fit: BoxFit.contain,
             ),
           ),
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () => scrollToSection(aboutKey), // Home scrolls to About
             child: const Text(
               'Home',
-              style: TextStyle(
-                  fontFamily: 'CH',
-                  fontSize: 14,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+              style: _navStyle,
             ),
           ),
           TextButton(
-              onPressed: () {},
-              child: const Text(
-                'About',
-                style: TextStyle(
-                    fontFamily: 'CH',
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500),
-              )),
-          TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Services',
-                style: TextStyle(
-                    fontFamily: 'CH',
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500),
-              )),
-          TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Price',
-                style: TextStyle(
-                    fontFamily: 'CH',
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500),
-              )),
-          TextButton(
-            onPressed: () {},
+            onPressed: () => scrollToSection(aboutKey),
             child: const Text(
-              'News',
-              style: TextStyle(
-                  fontFamily: 'CH',
-                  fontSize: 14,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+              'About',
+              style: _navStyle,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 70),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.scaffoldColor,
-                  side: const BorderSide(color: AppColors.secondaryColor)),
-              child: const Text(
-                'Get started',
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color.fromARGB(255, 248, 198, 248),
-                    fontFamily: 'CH',
-                    fontWeight: FontWeight.w500),
-              ),
+          TextButton(
+            onPressed: () => scrollToSection(servicesKey),
+            child: const Text(
+              'Services',
+              style: _navStyle,
             ),
-          )
+          ),
+          TextButton(
+            onPressed: () => scrollToSection(sectorsKey),
+            child: const Text(
+              'Sectors',
+              style: _navStyle,
+            ),
+          ),
+          TextButton(
+            onPressed: () => scrollToSection(contactKey),
+            child: const Text(
+              'Contact Us',
+              style: _navStyle,
+            ),
+          ),
         ],
       ),
       backgroundColor: AppColors.scaffoldColor,
       body: BlocProvider(
         create: (context) => DisplayOffset(ScrollOffset(scrollOffsetValue: 0)),
-        child: const WholeScreen(),
+        child: WholeScreen(
+          aboutKey: aboutKey,
+          servicesKey: servicesKey,
+          sectorsKey: sectorsKey,
+          contactKey: contactKey,
+        ),
       ),
     );
   }
 }
+
+const _navStyle = TextStyle(
+  fontFamily: 'RO',
+  fontSize: 14,
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+);

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForthSection extends StatefulWidget {
-  const ForthSection({super.key});
+  const ForthSection({Key? key}) : super(key: key);
 
   @override
   State<ForthSection> createState() => _ForthSectionState();
@@ -63,28 +63,16 @@ class _ForthSectionState extends State<ForthSection>
                   controller: controller,
                   maxHeight: 70.0,
                   child: const Text(
-                    'SERVICES',
+                    'OUR SERVICES',
                     style: TextStyle(
-                      fontFamily: 'CH',
+                      fontFamily: 'RO',
                       fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.secondaryColor,
-                    ),
-                  ),
-                ),
-                TextReveal(
-                  controller: controller,
-                  maxHeight: 70.0,
-                  child: const Text(
-                    'Innovate with Technology',
-                    style: TextStyle(
-                      fontFamily: 'CH',
-                      fontSize: 38,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
+                
                 Wrap(
                   runAlignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.center,

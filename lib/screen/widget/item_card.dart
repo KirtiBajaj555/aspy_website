@@ -130,8 +130,8 @@ class _ItemCardState extends State<ItemCard>
                           child: Text(
                             widget.title,
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'CH',
+                              color: Colors.black,
+                              fontFamily: 'RO',
                               fontSize: 15,
                               fontWeight: FontWeight.normal,
                             ),
@@ -146,7 +146,7 @@ class _ItemCardState extends State<ItemCard>
                             widget.subtitle,
                             style: const TextStyle(
                               color: Color.fromARGB(255, 5, 5, 5),
-                              fontFamily: 'CH',
+                              fontFamily: 'RO',
                               fontSize: 15,
                               fontWeight: FontWeight.w200,
                             ),

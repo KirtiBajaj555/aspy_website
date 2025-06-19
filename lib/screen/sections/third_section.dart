@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThirdSection extends StatefulWidget {
-  const ThirdSection({super.key});
-
+ const ThirdSection({Key? key}) : super(key: key);
+ 
   @override
   State<ThirdSection> createState() => _ThirdSectionState();
 }
@@ -90,10 +90,15 @@ class _ThirdSectionState extends State<ThirdSection>
             Flexible(
               flex: 1,
               child: SlideTransition(
-                position: offsetImage,
-                child: Image.asset(
-                  'assets/images/Frame 29.png',
-                ),
+            position: offsetImage,
+            child: SizedBox(
+              width: 650, // adjust this value
+              child: Image.asset(
+                'assets/images/StockCake-Investigating Currency Details_1749042756.jpg',
+                fit: BoxFit.contain,
+              ),
+            ),
+
               ),
             ),
             SizedBox(
@@ -115,7 +120,7 @@ class _ThirdSectionState extends State<ThirdSection>
                           'About us',
                           style: TextStyle(
                             fontSize: 20,
-                            fontFamily: 'CH',
+                            fontFamily: 'RO',
                             fontWeight: FontWeight.normal,
                             color: AppColors.secondaryColor,
                           ),
@@ -124,71 +129,28 @@ class _ThirdSectionState extends State<ThirdSection>
                       const SizedBox(
                         height: 10,
                       ),
-                      TextReveal(
-                        maxHeight: 50,
-                        controller: controller,
-                        child: const Text(
-                          'Crypto Saving Base',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'CH',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      TextReveal(
-                        maxHeight: 50,
-                        controller: controller,
-                        child: const Text(
-                          'of Your Choice',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'CH',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
+                    
                       SlideTransition(
                         position: transform,
                         // opacity: subTextOpacityAnimation,
                         child: const Text(
-                          'Lorem ipsum dolor sit amet. Vel blanditiis modi eos accusamus cupiditate ut sint quaerat. Sit autem rerum qui vitae dolores cum eveniet eveniet vel sunt sunt eum reiciendis rerum aut voluptatem minus.',
-                          style: TextStyle(
-                            fontFamily: 'CH',
+                          'A S P Y & CO LLP (ASPY) is a Chartered Accountants firm providing Assurance, Taxation and Advisory services. Revered for our professional ethos and technical expertise, drawn on perspicacity of over two decades of experience of the partners in their professional endeavours and a team of highly competent professionals, we provide efficacious solutions to our client’s needs, running into deep engagements.\n\n'
+                          'Our philosophy is of partnering with our clients and not being a distant service provider. Since businesses are inherently different, we tailor our services to meet client’s specific needs and banish the ‘one-size-fits-all’ standardisation.\n\n'
+                          'We recruit, train, motivate and retain highly capable and sharpest talent, who bring quality in their work and deliver the best solutions.\n\n'
+                          'Head office in Ichalkaranji (Dist- Kolhapur, Maharashtra) with associates at Mumbai, Navi Mumbai, Thane and Pune locations and leverage our state-of-art infrastructure, wide network, best practices and people development programs. Under the able direction of partners and associates, ASPY’s team strength of over 30 people is uniquely positioned to provide you quality opinions and services. Our Inter-disciplinary approach renders to give you seamless value.\n\n'
+                          'Serving to the wider business community, we enjoy unparalleled reputation and respect of our clients, who trust and rely on us for our expertise and professionalism.',
+                             style: TextStyle(
+                            fontFamily: 'RO',
                             fontSize: 18,
                             color: Colors.black,
-                            fontWeight: FontWeight.w200,
+                          
                           ),
                         ),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      TextReveal(
-                        maxHeight: 50,
-                        controller: controller,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(100, 50),
-                            backgroundColor: AppColors.scaffoldColor,
-                            side: const BorderSide(
-                              width: 0.5,
-                              color: AppColors.secondaryColor,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Learn More',
-                            style: TextStyle(
-                                fontFamily: 'CH',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w200,
-                                color: AppColors.secondaryColor),
-                          ),
-                        ),
-                      ),
+                      
                     ],
                   )
                 ],

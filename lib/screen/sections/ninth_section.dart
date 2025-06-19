@@ -39,7 +39,7 @@ class _NinthSectionState extends State<NinthSection> {
                     const Text(
                       'Lorem ipsum dolor sit amet consectetur. \nFusce nisl lacus elementum neque.',
                       style: TextStyle(
-                        fontFamily: 'CH',
+                        fontFamily: 'RO',
                         fontSize: 12,
                         color: Colors.black,
                       ),
@@ -52,8 +52,8 @@ class _NinthSectionState extends State<NinthSection> {
                     Text(
                       'Contact Us',
                       style: TextStyle(
-                        fontFamily: 'CH',
-                        fontSize: 12,
+                        fontFamily: 'RO',
+                        fontSize: 15,
                         color: Colors.black,
                       ),
                     ),
@@ -66,16 +66,16 @@ class _NinthSectionState extends State<NinthSection> {
                         Text(
                           '(524) 333 6565',
                           style: TextStyle(
-                            fontFamily: 'CH',
-                            fontSize: 12,
+                            fontFamily: 'RO',
+                            fontSize: 13,
                             color: Colors.black,
                           ),
                         ),
                         Text(
                           'example@email.com',
                           style: TextStyle(
-                            fontFamily: 'CH',
-                            fontSize: 12,
+                            fontFamily: 'RO',
+                            fontSize: 13,
                             color: Colors.black,
                           ),
                         ),
