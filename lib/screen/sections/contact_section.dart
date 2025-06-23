@@ -24,180 +24,196 @@ class _ContactSectionState extends State<ContactSection> {
       create: (_) => ContactFormBloc(),
       child: Container(
         color: AppColors.secondaryColor,
-        padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 60),
-        child: Row(
-          children: [
-            // 👈 Left: Contact Form (35%)
-            Expanded(
-              flex: 35,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      spreadRadius: 5,
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            bool isMobile = constraints.maxWidth < 800;
+
+            return SingleChildScrollView(
+              child: isMobile
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildFormSection(),
+                        const SizedBox(height: 40),
+                        const _OfficeInfoDisplay(),
+                      ],
+                    )
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(flex: 35, child: _buildFormSection()),
+                        const SizedBox(width: 40),
+                        const Expanded(flex: 65, child: _OfficeInfoDisplay()),
+                      ],
+                    ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFormSection() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 5,
+          ),
+        ],
+      ),
+      child: BlocBuilder<ContactFormBloc, ContactFormState>(
+        builder: (context, state) {
+          if (state is ContactFormSuccess) {
+            return const Center(
+              child: Text(
+                'Sent Successfully!',
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            );
+          }
+
+          return Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Connect With Us',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'RO',
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _name,
+                  decoration: const InputDecoration(
+                    labelText: 'Your Name',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Please enter your name' : null,
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _email,
+                  decoration: const InputDecoration(
+                    labelText: 'Your Email',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) => value != null && value.contains('@')
+                      ? null
+                      : 'Please enter a valid email',
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80,
+                      child: TextFormField(
+                        controller: _countryCode,
+                        decoration: const InputDecoration(
+                          labelText: 'Code',
+                          hintText: '+91',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Required';
+                          } else if (!value.startsWith('+')) {
+                            return 'Must start with +';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextFormField(
+                        controller: _phone,
+                        keyboardType: TextInputType.phone,
+                        decoration: const InputDecoration(
+                          labelText: 'Phone Number',
+                          hintText: '10-digit number',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your number';
+                          } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                            return 'Enter 10 digits';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
                   ],
                 ),
-                child: BlocBuilder<ContactFormBloc, ContactFormState>(
-                  builder: (context, state) {
-                    if (state is ContactFormSuccess) {
-                      return const Center(
-                        child: Text(
-                          'Sent Successfully!',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
-                      );
-                    }
-
-                    return Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Connect With Us',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'RO',
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _name,
-                            decoration: const InputDecoration(
-                              labelText: 'Your Name',
-                              border: OutlineInputBorder(),
-                            ),
-                            validator: (value) =>
-                                value!.isEmpty ? 'Please enter your name' : null,
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _email,
-                            decoration: const InputDecoration(
-                              labelText: 'Your Email',
-                              border: OutlineInputBorder(),
-                            ),
-                            validator: (value) => value != null && value.contains('@')
-                                ? null
-                                : 'Please enter a valid email',
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 80,
-                                child: TextFormField(
-                                  controller: _countryCode,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Code',
-                                    hintText: '+91',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Required';
-                                    } else if (!value.startsWith('+')) {
-                                      return 'Must start with +';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: TextFormField(
-                                  controller: _phone,
-                                  keyboardType: TextInputType.phone,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Phone Number',
-                                    hintText: '10-digit number',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your number';
-                                    } else if (!RegExp(r'^\d{10}$')
-                                        .hasMatch(value)) {
-                                      return 'Enter 10 digits';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _message,
-                            maxLines: 4,
-                            decoration: const InputDecoration(
-                              labelText: 'Message',
-                              border: OutlineInputBorder(),
-                            ),
-                            validator: (value) =>
-                                value!.isEmpty ? 'Please enter a message' : null,
-                          ),
-                          const SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: state is ContactFormSubmitting
-                                ? null
-                                : () {
-                                    if (_formKey.currentState!.validate()) {
-                                      context
-                                          .read<ContactFormBloc>()
-                                          .add(SubmitContactForm(
-                                            name: _name.text,
-                                            email: _email.text,
-                                            countryCode: _countryCode.text,
-                                            phone: _phone.text,
-                                            message: _message.text,
-                                          ));
-                                    }
-                                  },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.darkColor,
-                              foregroundColor: Colors.white,
-                            ),
-                            child: state is ContactFormSubmitting
-                                ? const CircularProgressIndicator()
-                                : const Text('Send'),
-                          ),
-                          if (state is ContactFormFailure)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 12.0),
-                              child: Text(
-                                'Error: ${state.error}',
-                                style: const TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                        ],
-                      ),
-                    );
-                  },
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _message,
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    labelText: 'Message',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Please enter a message' : null,
                 ),
-              ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: state is ContactFormSubmitting
+                      ? null
+                      : () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<ContactFormBloc>().add(
+                                  SubmitContactForm(
+                                    name: _name.text,
+                                    email: _email.text,
+                                    countryCode: _countryCode.text,
+                                    phone: _phone.text,
+                                    message: _message.text,
+                                  ),
+                                );
+                          }
+                        },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.darkColor,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: state is ContactFormSubmitting
+                      ? const CircularProgressIndicator()
+                      : const Text('Send'),
+                ),
+                if (state is ContactFormFailure)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: Text(
+                      'Error: ${state.error}',
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+              ],
             ),
-            const SizedBox(width: 40),
-            // 🏢 Right: Office Info (65%)
-            const Expanded(
-              flex: 65,
-              child: _OfficeInfoDisplay(),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -271,11 +287,11 @@ class _OfficeInfoDisplay extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               Icon(Icons.location_on, color: Colors.redAccent, size: 24),
               SizedBox(width: 8),
               Text(
@@ -287,8 +303,8 @@ class _OfficeInfoDisplay extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          const Text(
+          SizedBox(height: 16),
+          Text(
             'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302',
             style: TextStyle(fontSize: 15, height: 1.5),
           ),
@@ -312,8 +328,9 @@ class _OfficeInfoDisplay extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         _headOfficeCard(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Wrap(
+          spacing: 20,
+          runSpacing: 20,
           children: [
             _card(
               'Palus – Maharashtra',

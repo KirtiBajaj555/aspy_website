@@ -33,6 +33,8 @@ dependencies:
   animated_text_kit: ^4.2.3  
   lottie: ^3.3.1
   equatable: ^2.0.7
+  responsive_framework: ^1.5.1
+  flutter_screenutil: ^5.9.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

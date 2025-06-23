@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+
 import '/constant/color.dart';
 import '/screen/widget/text_transform.dart';
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-
-import '../widget/text_reveal.dart';
+import '/screen/widget/text_reveal.dart';
 
 class FirstSection extends StatefulWidget {
   const FirstSection({super.key});
@@ -17,120 +19,155 @@ class _FirstSectionState extends State<FirstSection>
   late AnimationController controller;
   late Animation<double> textRevealAnimation;
   late Animation<double> textOpacityAnimation;
-  late Animation<double> descriptionAnimation;
+
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
+
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(
-        milliseconds: 1700,
-      ),
-      reverseDuration: const Duration(
-        milliseconds: 375,
-      ),
+      duration: const Duration(milliseconds: 1700),
     );
 
     textRevealAnimation = Tween<double>(begin: 60.0, end: 0.0).animate(
-        CurvedAnimation(
-            parent: controller,
-            curve: const Interval(0.0, 0.2, curve: Curves.easeOut)));
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(0.0, 0.2, curve: Curves.easeOut),
+      ),
+    );
 
     textOpacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(
-            parent: controller,
-            curve: const Interval(0.0, 0.3, curve: Curves.easeOut)));
-    Future.delayed(const Duration(milliseconds: 1000), () {
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(0.0, 0.3, curve: Curves.easeOut),
+      ),
+    );
+
+    Future.delayed(const Duration(milliseconds: 800), () {
       controller.forward();
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = ResponsiveBreakpoints.of(context).isMobile;
+
     return Container(
-      height: 800,
-      decoration: const BoxDecoration(color: AppColors.scaffoldColor),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 90, top: 200),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextReveal(
-                    maxHeight: 100,
-                    controller: controller,
-                    textOpacityAnimation: textOpacityAnimation,
-                    textRevealAnimation: textRevealAnimation,
-                    child: const Text(
-                      'Trusted ',
-                      style: TextStyle(
-                          fontFamily: 'RO',
-                          fontSize: 45,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                  TextReveal(
-                    maxHeight: 100,
-                    controller: controller,
-                    textOpacityAnimation: textOpacityAnimation,
-                    textRevealAnimation: textRevealAnimation,
-                    child: const Text(
-                      'Preservation',
-                      style: TextStyle(
-                          fontFamily: 'RO',
-                          fontSize: 45,
-                          color: Color.fromARGB(255, 3, 3, 3),
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextTransform(
-                    maxHeight: 100,
-                    controller: controller,
-                    textOpacityAnimation: textOpacityAnimation,
-                    //textRevealAnimation: textRevealAnimation,
-                    child: const Text(
-                      'Simplifying Numbers. Amplifying Growth..',
-                      style: TextStyle(
-                          fontFamily: 'RO',
-                          fontSize: 13,
-                          color: Color.fromARGB(255, 18, 18, 18),
-                          fontWeight: FontWeight.w200),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                 
-                ],
-              ),
-            ),
-          ),
-          const Expanded(flex: 9, child: FirstPageImage())
-        ],
+      color: AppColors.scaffoldColor,
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 20.w : 90.w,
+        vertical: isMobile ? 40.h : 150.h,
       ),
+      child: isMobile
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _TextColumn(controller, textRevealAnimation, textOpacityAnimation),
+                SizedBox(height: 30.h),
+                SizedBox(height: 400.h, child: FirstPageImage()),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: _TextColumn(controller, textRevealAnimation, textOpacityAnimation),
+                ),
+                Expanded(flex: 7, child: FirstPageImage()),
+              ],
+            ),
     );
   }
 }
 
+class _TextColumn extends StatelessWidget {
+  final AnimationController controller;
+  final Animation<double> textRevealAnimation;
+  final Animation<double> textOpacityAnimation;
+
+  const _TextColumn(this.controller, this.textRevealAnimation, this.textOpacityAnimation, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Responsive font size for titles
+    double headingFontSize;
+    if (screenWidth >= 1440) {
+      headingFontSize = 72.sp;
+    } else if (screenWidth >= 1024) {
+      headingFontSize = 64.sp;
+    } else if (screenWidth >= 600) {
+      headingFontSize = 58.sp;
+    } else {
+      headingFontSize = 48.sp; // Increased from 42.sp for better mobile readability
+    }
+
+    // Responsive font size for subtitle
+    double subtitleFontSize = screenWidth < 600 ? 20.sp : 18.sp;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextReveal(
+          maxHeight: 120.h, // More breathing space
+          controller: controller,
+          textOpacityAnimation: textOpacityAnimation,
+          textRevealAnimation: textRevealAnimation,
+          child: Text(
+            'Trusted',
+            style: TextStyle(
+              fontFamily: 'RO',
+              fontSize: headingFontSize,
+              fontWeight: FontWeight.w800,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        TextReveal(
+          maxHeight: 120.h,
+          controller: controller,
+          textOpacityAnimation: textOpacityAnimation,
+          textRevealAnimation: textRevealAnimation,
+          child: Text(
+            'Preservation',
+            style: TextStyle(
+              fontFamily: 'RO',
+              fontSize: headingFontSize,
+              fontWeight: FontWeight.w800,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        SizedBox(height: 30.h),
+        TextTransform(
+          maxHeight: 100.h,
+          controller: controller,
+          textOpacityAnimation: textOpacityAnimation,
+          child: Text(
+            'Simplifying Numbers. Amplifying Growth.',
+            style: TextStyle(
+              fontFamily: 'RO',
+              fontSize: subtitleFontSize,
+              fontWeight: FontWeight.w300,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
 class FirstPageImage extends StatefulWidget {
-  const FirstPageImage({
-    Key? key,
-  }) : super(key: key);
+  const FirstPageImage({super.key});
 
   @override
   State<FirstPageImage> createState() => _FirstPageImageState();
@@ -139,71 +176,67 @@ class FirstPageImage extends StatefulWidget {
 class _FirstPageImageState extends State<FirstPageImage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 775));
-
-    _animation = Tween<double>(begin: 920.0, end: 0.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
-
     super.initState();
-    Future.delayed(const Duration(milliseconds: 375), () {
-      if (_controller.isDismissed) {
-        _controller.forward();
-      }
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(1.2, 0.0), // Right to left
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+
+    Future.delayed(const Duration(milliseconds: 400), () {
+      if (_controller.isDismissed) _controller.forward();
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 1.0),
-              height: 920.0,
-              width: double.infinity,
-              child: child,
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: _animation.value,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.scaffoldColor,
-                      AppColors.secondaryColor,
-                    ],
-                    tileMode: TileMode.mirror,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-      child: Transform.scale(
-      scale: 0.8,
-      child: Lottie.asset(
-        'assets/images/Main Scene.json',
-       fit: BoxFit.cover,
-  ),
-),
+    final bool isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
+    final screenWidth = MediaQuery.of(context).size.width;
+
+double scale;
+double height;
+
+if (screenWidth >= 1440) {
+  scale = 1.6;
+  height = 900.h;
+} else if (screenWidth >= 1024) {
+  scale = 1.5;
+  height = 850.h;
+} else if (screenWidth >= 600) {
+  scale = 1.5;
+  height = 700.h;
+} else {
+  scale = 1.5;
+  height = 500.h;
+}
+
+
+    return SlideTransition(
+      position: _slideAnimation,
+      child: Transform.scale(
+        scale: scale,
+        child: Lottie.asset(
+          'assets/images/Main Scene.json',
+          height: height,
+          fit: BoxFit.contain,
+        ),
+      ),
     );
   }
 }
