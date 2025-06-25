@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/contact_form_bloc.dart';
 import '../../constant/color.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key}) : super(key: key);
@@ -54,7 +56,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildFormSection() {
+    Widget _buildFormSection() {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       padding: const EdgeInsets.all(30),
@@ -178,7 +180,7 @@ class _ContactSectionState extends State<ContactSection> {
                 ElevatedButton(
                   onPressed: state is ContactFormSubmitting
                       ? null
-                      : () {
+                      : () async {
                           if (_formKey.currentState!.validate()) {
                             context.read<ContactFormBloc>().add(
                                   SubmitContactForm(
@@ -189,6 +191,44 @@ class _ContactSectionState extends State<ContactSection> {
                                     message: _message.text,
                                   ),
                                 );
+
+                            final url = Uri.parse(
+                                'https://script.google.com/macros/s/AKfycbyWJGnmn8L0L7FfWIkFGfwm14Laq1dUvKvvx4wwu_1wLugt3lWwJQRHN-lEGmoZI1cT6w/exec');
+                            final response = await http.post(
+                            url,
+                            headers: {'Content-Type': 'application/json'},
+                            body: jsonEncode({
+                              'name': _name.text,
+                              'email': _email.text,
+                              'countryCode': _countryCode.text,
+                              'phone': _phone.text,
+                              'message': _message.text,
+                            }),
+                          );
+
+                          print('Response status: ${response.statusCode}');
+                          print('Response body: ${response.body}');
+
+
+                            if (response.statusCode == 200) {
+                              if (!mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Submitted Successfully')),
+                              );
+                              _formKey.currentState?.reset();
+                              _name.clear();
+                              _email.clear();
+                              _phone.clear();
+                              _countryCode.text = '+91';
+                              _message.clear();
+                            } else {
+                              if (!mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Submission Failed')),
+                              );
+                            }
                           }
                         },
                   style: ElevatedButton.styleFrom(

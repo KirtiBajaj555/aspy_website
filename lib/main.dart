@@ -72,12 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 420,
+        leadingWidth: 500,
         backgroundColor: AppColors.secondaryColor,
         leading: Padding(
           padding: EdgeInsets.only(left: 10.w),
           child: SizedBox(
             height: 200.h,
+             width: 100.w,
             child: Image.asset(
               'assets/images/ASPY.png',
               fit: BoxFit.contain,
