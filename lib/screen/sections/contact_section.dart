@@ -192,19 +192,22 @@ class _ContactSectionState extends State<ContactSection> {
                                   ),
                                 );
 
-                            final url = Uri.parse(
-                                'https://script.google.com/macros/s/AKfycbyWJGnmn8L0L7FfWIkFGfwm14Laq1dUvKvvx4wwu_1wLugt3lWwJQRHN-lEGmoZI1cT6w/exec');
                             final response = await http.post(
-                            url,
-                            headers: {'Content-Type': 'application/json'},
-                            body: jsonEncode({
+                            Uri.parse(
+                              'https://script.google.com/macros/s/AKfycbyWJGnmn8L0L7FfWIkFGfwm14Laq1dUvKvvx4wwu_1wLugt3lWwJQRHN-lEGmoZI1cT6w/exec',
+                            ),
+                            headers: {
+                              'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: {
                               'name': _name.text,
                               'email': _email.text,
                               'countryCode': _countryCode.text,
                               'phone': _phone.text,
                               'message': _message.text,
-                            }),
+                            },
                           );
+
 
                           print('Response status: ${response.statusCode}');
                           print('Response body: ${response.body}');
