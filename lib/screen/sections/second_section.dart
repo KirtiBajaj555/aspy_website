@@ -14,6 +14,7 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen>
     with TickerProviderStateMixin {
+  @override
   void initState() {
     controller = AnimationController(
       vsync: this,

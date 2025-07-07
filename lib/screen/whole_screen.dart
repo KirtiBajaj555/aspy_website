@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/screen_offset.dart';
 import 'sections/first_sections.dart';
-import 'sections/second_section.dart';
 import 'sections/third_section.dart';
 import 'sections/forth_section.dart';
 import 'sections/sixth_section.dart';
@@ -12,17 +11,21 @@ import 'sections/ninth_section.dart';
 import 'sections/contact_section.dart';
 
 class WholeScreen extends StatefulWidget {
+  final GlobalKey homeKey;
   final GlobalKey aboutKey;
   final GlobalKey servicesKey;
   final GlobalKey sectorsKey;
   final GlobalKey contactKey;
+  final ScrollController scrollController;
 
   const WholeScreen({
     super.key,
+    required this.homeKey,
     required this.aboutKey,
     required this.servicesKey,
     required this.sectorsKey,
     required this.contactKey,
+    required this.scrollController,
   });
 
   @override
@@ -30,45 +33,36 @@ class WholeScreen extends StatefulWidget {
 }
 
 class _WholeScreenState extends State<WholeScreen> {
-  late ScrollController controller;
-
   @override
   void initState() {
     super.initState();
-    controller = ScrollController();
-
-    controller.addListener(() {
+    widget.scrollController.addListener(() {
+      final offset = widget.scrollController.position.pixels;
+      final screenHeight = MediaQuery.of(context).size.height;
       context.read<DisplayOffset>().changeDisplayOffset(
-            (MediaQuery.of(context).size.height + controller.position.pixels)
-                .toInt(),
+            (screenHeight + offset).toInt(),
           );
     });
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ListView(
-      controller: controller,
+      controller: widget.scrollController,
       children: [
-        const FirstSection(),
-        ThirdSection(key: widget.aboutKey), // ✅ About Section
-        const SizedBox(height: 100.0),
-        ForthSection(key: widget.servicesKey), // ✅ Services Section
-        const SizedBox(height: 50.0),
+        Container(key: widget.homeKey, child: const FirstSection()),
+        Container(key: widget.aboutKey, child: const ThirdSection()),
+        const SizedBox(height: 100),
+        Container(key: widget.servicesKey, child: const ForthSection()),
+        const SizedBox(height: 50),
         const EighthSection(),
-        const SizedBox(height: 100.0),
-        SixthSection(key: widget.sectorsKey), // ✅ Sectors Section
-        const SizedBox(height: 100.0),
-        ContactSection(key: widget.contactKey), // ✅ Contact Us Section
+        const SizedBox(height: 100),
+        Container(key: widget.sectorsKey, child: const SixthSection()),
+        const SizedBox(height: 100),
+        Container(key: widget.contactKey, child: const ContactSection()),
         const SizedBox(height: 80),
         const NinthSection(),
-        const SizedBox(height: 100.0),
+        const SizedBox(height: 100),
       ],
     );
   }

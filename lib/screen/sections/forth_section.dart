@@ -1,5 +1,4 @@
 import '/bloc/screen_offset.dart';
-import '/constant/color.dart';
 import '/model/items.dart';
 import '/screen/widget/item_card.dart';
 import '/screen/widget/text_reveal.dart';

@@ -31,28 +31,29 @@ class _EighthSectionState extends State<EighthSection>
   final List<TeamMember> team = const [
     TeamMember(
       imagePath: 'assets/images/businessman-shows-his-finger-up.jpg',
-      name: 'CA Pawan Maloo',
+      name: 'CA Pawan MAloo',
       role: 'Chartered Accountant',
-      description: 'Expert in taxation and audit, with 10+ years of experience.',
+      description: 'FCA with 25+ years’ experience, specializes in audits, GST, corporate tax, forensic audits, and MSME advisory. ICAI-nominated faculty and certified in forensic, GST, and bank audits.',
     ),
     TeamMember(
       imagePath: 'assets/images/businessman-shows-his-finger-up.jpg',
-      name: 'Riya Sharma',
-      role: 'Flutter Developer',
-      description: 'Passionate about mobile UI/UX and smooth app experiences.',
+      name: 'CA Yogita Shinde',
+      role: 'Chartered Accountant',
+      description:  'FCA with 16+ years’ experience, specializes in Indian and US accounting, financial reporting, GST, and audits. Award-winning entrepreneur with leadership in major bank audits and tech expertise.',
+    ),
+    TeamMember(
+      imagePath: 'assets/images/CA_Yogesh_Neje.png',
+      name: 'CA Yogesh Neje',
+      role: 'Chartered Accountant',
+      description: 'FCA with over 10 years’ experience in accounting, taxation, and audits. Expert Director at a Co-operative Bank, with certifications in GST, public finance, and concurrent bank audits..',
     ),
     TeamMember(
       imagePath: 'assets/images/businessman-shows-his-finger-up.jpg',
-      name: 'Rahul Verma',
-      role: 'Backend Engineer',
-      description: 'Specializes in Node.js, Firebase, and API integrations.',
+      name: 'CA Anant Dhupad',
+      role: 'Chartered Accountant',
+      description: 'FCA with 10+ years’ experience, specializes in bank audits, GST, direct tax, real estate accounting, and loan appraisals. DISA-qualified and certified in concurrent bank audits.',
     ),
-    TeamMember(
-      imagePath: 'assets/images/businessman-shows-his-finger-up.jpg',
-      name: 'Sneha Kapoor',
-      role: 'UI Designer',
-      description: 'Designs elegant interfaces for both web and mobile apps.',
-    ),
+    
   ];
 
   @override

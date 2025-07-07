@@ -16,9 +16,9 @@ class FirstSection extends StatefulWidget {
 
 class _FirstSectionState extends State<FirstSection>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> textRevealAnimation;
-  late Animation<double> textOpacityAnimation;
+  late final AnimationController controller;
+  late final Animation<double> textRevealAnimation;
+  late final Animation<double> textOpacityAnimation;
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _FirstSectionState extends State<FirstSection>
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = ResponsiveBreakpoints.of(context).isMobile;
+    final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
     return Container(
       color: AppColors.scaffoldColor,
@@ -68,18 +68,26 @@ class _FirstSectionState extends State<FirstSection>
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _TextColumn(controller, textRevealAnimation, textOpacityAnimation),
+                _TextColumn(
+                  controller: controller,
+                  textRevealAnimation: textRevealAnimation,
+                  textOpacityAnimation: textOpacityAnimation,
+                ),
                 SizedBox(height: 30.h),
-                SizedBox(height: 400.h, child: FirstPageImage()),
+                SizedBox(height: 400.h, child: const FirstPageImage()),
               ],
             )
           : Row(
               children: [
                 Expanded(
                   flex: 5,
-                  child: _TextColumn(controller, textRevealAnimation, textOpacityAnimation),
+                  child: _TextColumn(
+                    controller: controller,
+                    textRevealAnimation: textRevealAnimation,
+                    textOpacityAnimation: textOpacityAnimation,
+                  ),
                 ),
-                Expanded(flex: 7, child: FirstPageImage()),
+                const Expanded(flex: 7, child: FirstPageImage()),
               ],
             ),
     );
@@ -91,35 +99,34 @@ class _TextColumn extends StatelessWidget {
   final Animation<double> textRevealAnimation;
   final Animation<double> textOpacityAnimation;
 
-  const _TextColumn(this.controller, this.textRevealAnimation, this.textOpacityAnimation, {super.key});
+  const _TextColumn({
+    required this.controller,
+    required this.textRevealAnimation,
+    required this.textOpacityAnimation,
+  });
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Responsive font size for titles
-    double headingFontSize;
-    if (screenWidth >= 1440) {
-      headingFontSize = 72.sp;
-    } else if (screenWidth >= 1024) {
-      headingFontSize = 64.sp;
-    } else if (screenWidth >= 600) {
-      headingFontSize = 58.sp;
-    } else {
-      headingFontSize = 48.sp; // Increased from 42.sp for better mobile readability
-    }
+    final headingFontSize = screenWidth >= 1440
+        ? 72.sp
+        : screenWidth >= 1024
+            ? 64.sp
+            : screenWidth >= 600
+                ? 58.sp
+                : 48.sp;
 
-    // Responsive font size for subtitle
-    double subtitleFontSize = screenWidth < 600 ? 20.sp : 18.sp;
+    final subtitleFontSize = screenWidth < 600 ? 20.sp : 18.sp;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextReveal(
-          maxHeight: 120.h, // More breathing space
+          maxHeight: 120.h,
           controller: controller,
-          textOpacityAnimation: textOpacityAnimation,
           textRevealAnimation: textRevealAnimation,
+          textOpacityAnimation: textOpacityAnimation,
           child: Text(
             'Trusted',
             style: TextStyle(
@@ -133,8 +140,8 @@ class _TextColumn extends StatelessWidget {
         TextReveal(
           maxHeight: 120.h,
           controller: controller,
-          textOpacityAnimation: textOpacityAnimation,
           textRevealAnimation: textRevealAnimation,
+          textOpacityAnimation: textOpacityAnimation,
           child: Text(
             'Preservation',
             style: TextStyle(
@@ -165,7 +172,6 @@ class _TextColumn extends StatelessWidget {
   }
 }
 
-
 class FirstPageImage extends StatefulWidget {
   const FirstPageImage({super.key});
 
@@ -175,8 +181,8 @@ class FirstPageImage extends StatefulWidget {
 
 class _FirstPageImageState extends State<FirstPageImage>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _slideAnimation;
+  late final AnimationController _controller;
+  late final Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -188,7 +194,7 @@ class _FirstPageImageState extends State<FirstPageImage>
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: const Offset(1.2, 0.0), // Right to left
+      begin: const Offset(1.2, 0.0),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
@@ -205,27 +211,20 @@ class _FirstPageImageState extends State<FirstPageImage>
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = ResponsiveBreakpoints.of(context).isMobile;
-
     final screenWidth = MediaQuery.of(context).size.width;
 
-double scale;
-double height;
+    final double height;
+    final double scale = 1.5;
 
-if (screenWidth >= 1440) {
-  scale = 1.6;
-  height = 900.h;
-} else if (screenWidth >= 1024) {
-  scale = 1.5;
-  height = 850.h;
-} else if (screenWidth >= 600) {
-  scale = 1.5;
-  height = 700.h;
-} else {
-  scale = 1.5;
-  height = 500.h;
-}
-
+    if (screenWidth >= 1440) {
+      height = 900.h;
+    } else if (screenWidth >= 1024) {
+      height = 850.h;
+    } else if (screenWidth >= 600) {
+      height = 700.h;
+    } else {
+      height = 500.h;
+    }
 
     return SlideTransition(
       position: _slideAnimation,

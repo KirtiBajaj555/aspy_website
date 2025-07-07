@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/contact_form_bloc.dart';
 import '../../constant/color.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key}) : super(key: key);
@@ -58,6 +58,7 @@ class _ContactSectionState extends State<ContactSection> {
 
     Widget _buildFormSection() {
     return Container(
+      height: 660,
       margin: const EdgeInsets.only(bottom: 30),
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
@@ -78,7 +79,7 @@ class _ContactSectionState extends State<ContactSection> {
               child: Text(
                 'Sent Successfully!',
                 style: TextStyle(
-                  color: Colors.green,
+                  color: Color.fromARGB(255, 30, 32, 31),
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -265,10 +266,10 @@ class _ContactSectionState extends State<ContactSection> {
 class _OfficeInfoDisplay extends StatelessWidget {
   const _OfficeInfoDisplay();
 
-  Widget _card(String title, String address) {
+  Widget _card(String title, String address, String phoneNumber) {
     return Container(
-      width: 280,
-      height: 220,
+      width: 420, // slightly bigger width
+      height: 300, // slightly bigger height
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -294,13 +295,14 @@ class _OfficeInfoDisplay extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    overflow: TextOverflow.ellipsis,
                   ),
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Text(
             address,
             style: const TextStyle(
@@ -309,47 +311,18 @@ class _OfficeInfoDisplay extends StatelessWidget {
               color: Colors.black87,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _headOfficeCard() {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 30),
-      padding: const EdgeInsets.all(30),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 10,
-            spreadRadius: 3,
-          ),
-        ],
-      ),
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+          const SizedBox(height: 12),
           Row(
             children: [
-              Icon(Icons.location_on, color: Colors.redAccent, size: 24),
-              SizedBox(width: 8),
-              Text(
-                'Head Office – Thane - Mumbai, Maharashtra',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+              const Icon(Icons.phone, size: 18, color: Colors.green),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  phoneNumber,
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
             ],
-          ),
-          SizedBox(height: 16),
-          Text(
-            'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302',
-            style: TextStyle(fontSize: 15, height: 1.5),
           ),
         ],
       ),
@@ -358,38 +331,64 @@ class _OfficeInfoDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Our Offices',
-          style: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isMobile = constraints.maxWidth < 800;
+
+        List<Widget> allCards = [
+          _card(
+            'Head Office – Thane - Mumbai, Maharashtra',
+            'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302',
+            '+91 9876543210',
           ),
-        ),
-        const SizedBox(height: 30),
-        _headOfficeCard(),
-        Wrap(
-          spacing: 20,
-          runSpacing: 20,
+          _card(
+            'Sangli – Maharashtra',
+            'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
+            '+91 9988776655',
+          ),
+          _card(
+            'Ichalkaranji – Maharashtra',
+            '12/91, Shri Hari Kunj,\nOpp Prakash Light House,\nKolhapur – 416115',
+            '+91 9876501234',
+          ),
+          _card(
+            'Hupari – Maharashtra',
+            'Sapate Building,\nOpp. Laxmidevi School,\nHupari – 416203',
+            '+91 9012345678',
+          ),
+        ];
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _card(
-              'Palus – Maharashtra',
-              'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
+            const Text(
+              'Our Offices',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
             ),
-            _card(
-              'Ichalkaranji – Maharashtra',
-              '12/91, Shri Hari Kunj,\nOpp Prakash Light House,\nKolhapur – 416115',
-            ),
-            _card(
-              'Hupari – Maharashtra',
-              'Sapate Building,\nOpp. Laxmidevi School,\nHupari – 416203',
-            ),
+            const SizedBox(height: 30),
+            isMobile
+                ? Column(
+                    children: allCards
+                        .map((card) => Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: card,
+                            ))
+                        .toList(),
+                  )
+                : Wrap(
+                    spacing: 30,
+                    runSpacing: 30,
+                    alignment: WrapAlignment.center,
+                    children: allCards,
+                  ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

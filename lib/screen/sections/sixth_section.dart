@@ -39,6 +39,7 @@ class _SixthSectionState extends State<SixthSection>
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -65,7 +66,7 @@ class _SixthSectionState extends State<SixthSection>
                   maxHeight: 70,
                   controller: controller,
                   child: const Text(
-                    'NEWS',
+                    'Sectors',
                     style: TextStyle(
                       fontFamily: 'RO',
                       fontSize: 18,
