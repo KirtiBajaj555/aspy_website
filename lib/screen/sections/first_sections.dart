@@ -231,7 +231,7 @@ class _FirstPageImageState extends State<FirstPageImage>
       child: Transform.scale(
         scale: scale,
         child: Lottie.asset(
-          'assets/images/Main Scene.json',
+          'assets/images/Time-line-graph.json',
           height: height,
           fit: BoxFit.contain,
         ),

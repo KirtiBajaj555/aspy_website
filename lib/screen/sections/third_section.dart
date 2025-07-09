@@ -134,18 +134,18 @@ class _ThirdSectionState extends State<ThirdSection>
                         position: transform,
                         // opacity: subTextOpacityAnimation,
                         child: const Text(
-                          'A S P Y & CO LLP (ASPY) is a Chartered Accountants firm providing Assurance, Taxation and Advisory services. Revered for our professional ethos and technical expertise, drawn on perspicacity of over two decades of experience of the partners in their professional endeavours and a team of highly competent professionals, we provide efficacious solutions to our client’s needs, running into deep engagements.\n\n'
-                          'Our philosophy is of partnering with our clients and not being a distant service provider. Since businesses are inherently different, we tailor our services to meet client’s specific needs and banish the ‘one-size-fits-all’ standardisation.\n\n'
-                          'We recruit, train, motivate and retain highly capable and sharpest talent, who bring quality in their work and deliver the best solutions.\n\n'
-                          'Head office in Ichalkaranji (Dist- Kolhapur, Maharashtra) with associates at Mumbai, Navi Mumbai, Thane and Pune locations and leverage our state-of-art infrastructure, wide network, best practices and people development programs. Under the able direction of partners and associates, ASPY’s team strength of over 30 people is uniquely positioned to provide you quality opinions and services. Our Inter-disciplinary approach renders to give you seamless value.\n\n'
-                          'Serving to the wider business community, we enjoy unparalleled reputation and respect of our clients, who trust and rely on us for our expertise and professionalism.',
-                             style: TextStyle(
-                            fontFamily: 'RO',
-                            fontSize: 18,
-                            color: Colors.black,
-                          
-                          ),
-                        ),
+                                'A S P Y & CO LLP (ASPY) is a Chartered Accountants firm providing Assurance, Taxation and Advisory services. Revered for our professional ethos and technical expertise, drawn on perspicacity of over two decades of experience of the partners in their professional endeavours and a team of highly competent professionals, we provide efficacious solutions to our client’s needs, running into deep engagements.\n\n'
+                                'Our philosophy is of partnering with our clients and not being a distant service provider. Since businesses are inherently different, we tailor our services to meet client’s specific needs and banish the ‘one-size-fits-all’ standardisation.\n\n'
+                                'We recruit, train, motivate and retain highly capable and sharpest talent, who bring quality in their work and deliver the best solutions.\n\n'
+                                'Head office in Thane – Mumbai (Maharashtra) with associates at Mumbai, Sangli, and Ichalkaranji and Hupri locations, leveraging our state-of-the-art infrastructure, wide network, best practices, and people development programs. Under the able direction of partners and associates, ASPY’s team strength of over 30 people is uniquely positioned to provide you quality opinions and services. Our inter-disciplinary approach renders to give you seamless value.\n\n'
+                                'Serving to the wider business community, we enjoy unparalleled reputation and respect of our clients, who trust and rely on us for our expertise and professionalism.',
+                                style: TextStyle(
+                                  fontFamily: 'RO',
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+
                       ),
                       const SizedBox(
                         height: 30,

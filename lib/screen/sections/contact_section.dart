@@ -294,7 +294,7 @@ class _OfficeInfoDisplay extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                   softWrap: true,
                   overflow: TextOverflow.visible,
@@ -306,7 +306,7 @@ class _OfficeInfoDisplay extends StatelessWidget {
           Text(
             address,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               height: 1.5,
               color: Colors.black87,
             ),
@@ -342,19 +342,20 @@ class _OfficeInfoDisplay extends StatelessWidget {
             '+91 9876543210',
           ),
           _card(
-            'Sangli – Maharashtra',
-            'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
-            '+91 9988776655',
-          ),
-          _card(
             'Ichalkaranji – Maharashtra',
             '12/91, Shri Hari Kunj,\nOpp Prakash Light House,\nKolhapur – 416115',
             '+91 9876501234',
           ),
           _card(
+            'Sangli – Maharashtra',
+            'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
+            '+91 9988776655',
+          ),
+          
+          _card(
             'Hupari – Maharashtra',
-            'Sapate Building,\nOpp. Laxmidevi School,\nHupari – 416203',
-            '+91 9012345678',
+            '1st Floor, Sapate Building,\nOpp. Laxmidevi Girls School,\nMain Road, Shivaji Nagar,\nHupari, Dist- Kolhapur,\nMaharashtra - 416203',
+            '9028801524\nOffice: 9021275083, 0230-2959246',
           ),
         ];
 
