@@ -355,7 +355,7 @@ class _OfficeInfoDisplay extends StatelessWidget {
           _card(
             'Hupari – Maharashtra',
             '1st Floor, Sapate Building,\nOpp. Laxmidevi Girls School,\nMain Road, Shivaji Nagar,\nHupari, Dist- Kolhapur,\nMaharashtra - 416203',
-            '9028801524\nOffice: 9021275083, 0230-2959246',
+            '\nOffice: 9021275083, 0230-2959246',
           ),
         ];
 

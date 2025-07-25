@@ -4,6 +4,7 @@ import '/screen/widget/item_card.dart';
 import '/screen/widget/text_reveal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/screen/widget/Services_item_card.dart';
 
 class ForthSection extends StatefulWidget {
   const ForthSection({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _ForthSectionState extends State<ForthSection>
     controller = AnimationController(
       vsync: this,
       duration: const Duration(
-        milliseconds: 1000,
+        milliseconds: 500,
       ),
       reverseDuration: const Duration(
         milliseconds: 375,
@@ -50,7 +51,7 @@ class _ForthSectionState extends State<ForthSection>
               return false;
             }
           },
-          builder: (context, state) {
+          builder: (context, state) { 
               if (state.scrollOffsetValue > 2200.0) {
                 controller.forward();
               } else {
@@ -79,7 +80,7 @@ class _ForthSectionState extends State<ForthSection>
                   runSpacing: 70,
                   children: items
                       .map(
-                        (item) => ItemCard(
+                        (item) => FlipItemCard(
                           image: item.image,
                           title: item.title,
                           subtitle: item.subtitle,
