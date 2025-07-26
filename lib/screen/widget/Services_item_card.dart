@@ -4,7 +4,7 @@ import 'package:flutter_flip_card/flutter_flip_card.dart';
 class FlipItemCard extends StatefulWidget {
   final String image;
   final String title;
-  final String subtitle;
+  final String subtitle; // subtitle as single string with newlines
 
   const FlipItemCard({
     Key? key,
@@ -23,8 +23,8 @@ class _FlipItemCardState extends State<FlipItemCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 350,
+      width: 350,
+      height: 400,
       child: GestureDetector(
         onTap: () {
           _controller.flipcard(); // Manual flip on tap
@@ -66,17 +66,22 @@ class _FlipItemCardState extends State<FlipItemCard> {
             color: Colors.blueGrey[50],
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.subtitle,
-                    style: const TextStyle(fontSize: 14),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.subtitle,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        height: 1.5, // Line spacing
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
