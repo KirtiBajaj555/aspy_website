@@ -30,14 +30,14 @@ class _NinthSectionState extends State<NinthSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
+                      'assets/images/favicon.png',
                       height: 40,
                     ),
                     const SizedBox(
                       height: 15,
                     ),
                     const Text(
-                      'Lorem ipsum dolor sit amet consectetur. \nFusce nisl lacus elementum neque.',
+                      '.',
                       style: TextStyle(
                         fontFamily: 'RO',
                         fontSize: 12,
@@ -72,7 +72,7 @@ class _NinthSectionState extends State<NinthSection> {
                           ),
                         ),
                         Text(
-                          'example@email.com',
+                          'aspyllp@gmail.com',
                           style: TextStyle(
                             fontFamily: 'RO',
                             fontSize: 13,

@@ -15,18 +15,21 @@ List<Item> items = [
     title: 'Taxation Services',
     subtitle: '''
 Direct Tax Services:
-• Filing Tax Returns - Corporate and Non-Corporate
-• Advice on payment of advance tax
+• Filing of ITRs – Individuals, Corporates, LLPs
+• Advance Tax Calculation & Payment Support
 • Tax planning - Corporate and Non-Corporate
-• TDS Compliance services
+• TDS Compliance & Return Filing (Form 26Q, 24Q, etc.)
 • Structuring employee emoluments
 • Bulk filing of employee returns
 • Fringe Benefit Tax compliances
 
 Indirect Tax Services:
-• Sales Tax/VAT registration and compliance across states
+• GST Registration and Timely Return Filing, ITC, Reconciliation.
 • Compliance with Foreign Trade Policies
-• Service Tax registration and compliance
+• Cross-border Tax Compliance & Transfer Pricing
+• Representation in GST and Income Tax Scrutiny Cases
+• Advisory on GST Impact for Mergers & Supply Chain
+• Compliance with Foreign Trade Policy (FTP) under DGFT
 ''',
   ),
   Item(

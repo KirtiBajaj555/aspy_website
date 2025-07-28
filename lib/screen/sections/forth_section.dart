@@ -66,7 +66,7 @@ class _ForthSectionState extends State<ForthSection>
                     'OUR SERVICES',
                     style: TextStyle(
                       fontFamily: 'RO',
-                      fontSize: 18,
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),

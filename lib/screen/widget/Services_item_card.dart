@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 
 class FlipItemCard extends StatefulWidget {
   final String image;
   final String title;
-  final String subtitle; // subtitle as single string with newlines
+  final String subtitle;
 
   const FlipItemCard({
     Key? key,
@@ -21,6 +22,15 @@ class _FlipItemCardState extends State<FlipItemCard> {
   final FlipCardController _controller = FlipCardController();
 
   @override
+  void initState() {
+    super.initState();
+    // Auto-flip after 1 second
+    Future.delayed(const Duration(seconds: 1), () {
+      _controller.flipcard();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 350,
@@ -32,7 +42,7 @@ class _FlipItemCardState extends State<FlipItemCard> {
         child: FlipCard(
           rotateSide: RotateSide.bottom,
           axis: FlipAxis.horizontal,
-          onTapFlipping: false, // Disable auto flip on touch
+          onTapFlipping: false,
           controller: _controller,
           frontWidget: Card(
             elevation: 4,
@@ -76,7 +86,7 @@ class _FlipItemCardState extends State<FlipItemCard> {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        height: 1.5, // Line spacing
+                        height: 1.5, // Line spacing between lines
                       ),
                       textAlign: TextAlign.left,
                     ),
