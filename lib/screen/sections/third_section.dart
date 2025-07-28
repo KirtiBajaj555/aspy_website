@@ -133,8 +133,8 @@ class _ThirdSectionState extends State<ThirdSection>
             style: TextStyle(
               fontSize: 20,
               fontFamily: 'RO',
-              fontWeight: FontWeight.normal,
-              color: AppColors.secondaryColor,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
         ),
