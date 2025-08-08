@@ -339,17 +339,17 @@ class _OfficeInfoDisplay extends StatelessWidget {
           _card(
             'Head Office – Thane - Mumbai, Maharashtra',
             'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302',
-            '+91 9876543210',
+            '+91 7499618705',
           ),
           _card(
             'Ichalkaranji – Maharashtra',
             '12/91, Shri Hari Kunj,\nOpp Prakash Light House,\nKolhapur – 416115',
-            '+91 9876501234',
+            '+91 7738770841',
           ),
           _card(
             'Sangli – Maharashtra',
             'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
-            '+91 9988776655',
+            '+91 8007711117',
           ),
           
           _card(

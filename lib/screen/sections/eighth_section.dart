@@ -40,7 +40,7 @@ class _EighthSectionState extends State<EighthSection>
           'Led GST audits for listed infrastructure firms (₹3000+ Cr turnover) and brings 15+ years of corporate job experience.',
     ),
     TeamMember(
-      imagePath: 'assets/images/businessman-shows-his-finger-up.jpg',
+      imagePath: 'assets/images/CA_Yogita_Shinde.jpg',
       name: 'CA Yogita Shinde',
       role: 'Chartered Accountant',
       description:
