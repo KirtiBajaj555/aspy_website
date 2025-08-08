@@ -168,54 +168,59 @@ class _EighthSectionState extends State<EighthSection>
                               child: SizedBox(width: 50, height: 30),
                             ),
                             ResponsiveRowColumnItem(
-                              rowFlex: 2,
-                              child: Container(
-                                padding: const EdgeInsets.all(24.0),
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondaryColor.withOpacity(0.05),
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: AppColors.secondaryColor.withOpacity(0.1),
-                                      blurRadius: 12,
-                                      offset: const Offset(0, 6),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      member.name,
-                                      style: const TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'RO',
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      member.role,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'RO',
-                                      ),
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Text(
-                                      member.description,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'RO',
-                                        height: 1.5,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+  rowFlex: 2,
+  child: Container(
+    width: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+        ? double.infinity // For mobile, take full width
+        : 800, // Fixed width for desktop/tablet so right edges align
+    padding: const EdgeInsets.all(24.0),
+    decoration: BoxDecoration(
+      color: AppColors.secondaryColor.withOpacity(0.05),
+      borderRadius: BorderRadius.circular(20),
+      boxShadow: [
+        BoxShadow(
+          color: AppColors.secondaryColor.withOpacity(0.1),
+          blurRadius: 12,
+          offset: const Offset(0, 6),
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // keeps left alignment
+      children: [
+        Text(
+          member.name,
+          style: const TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'RO',
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          member.role,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'RO',
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          member.description,
+          textAlign: TextAlign.justify, // makes the right edge look aligned
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'RO',
+            height: 1.5,
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+
                           ],
                         ),
                       );

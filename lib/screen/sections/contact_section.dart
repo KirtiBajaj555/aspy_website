@@ -338,24 +338,24 @@ class _OfficeInfoDisplay extends StatelessWidget {
         List<Widget> allCards = [
           _card(
             'Head Office – Thane - Mumbai, Maharashtra',
-            'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302',
+            'A 002 Ratneshwar Park,\nNear Gram Panchayat Office,\nThane Bhiwandi Road,\nThane - 421302,\nDist-Thane,Maharashtra',
             '+91 7499618705',
           ),
           _card(
             'Ichalkaranji – Maharashtra',
-            '12/91, Shri Hari Kunj,\nOpp Prakash Light House,\nKolhapur – 416115',
+            '12/91, Shri Hari Kunj,\nPawar Mala,\nOpp Prakash Light House,\nIchalkaranji– 416115,\nDist-Kolhapur,Maharashtra',
             '+91 7738770841',
           ),
           _card(
             'Sangli – Maharashtra',
-            'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nSangli – 416310',
+            'Gala No. 1, Suman Plaza,\nOpp Bagal Heights,\nKanya Shala Road,\nSangli – 416310,\nDist-Kolhapur,Maharashtra',
             '+91 8007711117',
           ),
           
           _card(
             'Hupari – Maharashtra',
-            '1st Floor, Sapate Building,\nOpp. Laxmidevi Girls School,\nMain Road, Shivaji Nagar,\nHupari, Dist- Kolhapur,\nMaharashtra - 416203',
-            '\nOffice: 9021275083, 0230-2959246',
+            '1st Floor, Sapate Building,\nOpp. Laxmidevi Girls School,\nMain Road, Shivaji Nagar,\nHupari-416203, \nDist- Kolhapur,Maharashtra - 416203',
+            '+91 9021275083, 0230-2959246',
           ),
         ];
 
