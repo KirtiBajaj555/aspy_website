@@ -53,6 +53,7 @@ Litigation Services:
     image: 'assets/images/trend.png',
     title: 'Finance & Accounting',
     subtitle:'''• Finance & Accounts management
+• Project  Finance 
 • Direct and indirect tax compliance
 • Fixed assets management
 • Reconciliation: parties, banks, intercompanies
@@ -90,6 +91,7 @@ Litigation Services:
     image: 'assets/images/discussion.png',
     title: 'Payroll Processing',
     subtitle:'''
+• Indian & US payroll processing
 • Salary structure and breakup planning
 • Salary master and monthly payroll preparation
 • Tax withholding and secure payslip generation

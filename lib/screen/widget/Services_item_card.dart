@@ -21,16 +21,16 @@ class FlipItemCard extends StatefulWidget {
 class _FlipItemCardState extends State<FlipItemCard> {
   final FlipCardController _controller = FlipCardController();
   bool _isDesktop = false;
-  bool _isFlipped = false; // track flip state
+  bool _isFlipped = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final width = MediaQuery.of(context).size.width;
-    _isDesktop = width >= 1024; // breakpoint
+    _isDesktop = width >= 1024; // breakpoint for desktop
 
     if (!_isDesktop) {
-      // Small screen → auto flip then back
+      // Small screen → auto flip and back
       Future.delayed(const Duration(seconds: 1), () {
         _flipToBack();
         Future.delayed(const Duration(seconds: 2), () {
@@ -59,33 +59,64 @@ class _FlipItemCardState extends State<FlipItemCard> {
     Widget flipCardWidget = FlipCard(
       rotateSide: RotateSide.bottom,
       axis: FlipAxis.horizontal,
-      onTapFlipping: !_isDesktop,
+      onTapFlipping: !_isDesktop, // disable auto tap flipping for desktop
       controller: _controller,
-      frontWidget: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(widget.image, height: 80),
-              const SizedBox(height: 20),
-              Text(
-                widget.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-                textAlign: TextAlign.center,
+      frontWidget: _buildFront(),
+      backWidget: _buildBack(),
+    );
+
+    // Desktop hover/click behavior
+    if (_isDesktop) {
+      flipCardWidget = MouseRegion(
+        onEnter: (_) {
+          _flipToBack(); // Flip to back on hover
+        },
+        child: flipCardWidget,
+      );
+    }
+
+    return SizedBox(
+      width: 350,
+      height: 400,
+      child: flipCardWidget,
+    );
+  }
+
+  Widget _buildFront() {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(widget.image, height: 80),
+            const SizedBox(height: 20),
+            Text(
+              widget.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
               ),
-            ],
-          ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
-      backWidget: Card(
+    );
+  }
+
+  Widget _buildBack() {
+    return GestureDetector(
+      onTap: () {
+        if (_isDesktop) {
+          _flipToFront(); // On desktop → click to flip back
+        }
+      },
+      child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -111,29 +142,6 @@ class _FlipItemCardState extends State<FlipItemCard> {
           ),
         ),
       ),
-    );
-
-    // Desktop → flip on hover
-    if (_isDesktop) {
-      flipCardWidget = MouseRegion(
-        onEnter: (_) {
-          Future.delayed(const Duration(milliseconds: 150), () {
-            _flipToBack();
-          });
-        },
-        onExit: (_) {
-          Future.delayed(const Duration(milliseconds: 150), () {
-            _flipToFront();
-          });
-        },
-        child: flipCardWidget,
-      );
-    }
-
-    return SizedBox(
-      width: 350,
-      height: 400,
-      child: flipCardWidget,
     );
   }
 }
