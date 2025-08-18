@@ -8,9 +8,7 @@ import '../constant/color.dart';
 import 'whole_screen.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String initialSection;
-
-  const MyHomePage({super.key, required this.initialSection});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -25,59 +23,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final ScrollController scrollController = ScrollController();
 
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 300));
-      scrollToSectionByName(widget.initialSection);
-    });
-  }
-
+  /// 🔑 Fixed navigation: always scrolls to the right section
   void scrollToSection(GlobalKey key) {
-    Future.doWhile(() async {
-      final context = key.currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox?;
-        if (box != null) {
-          final offset = box.localToGlobal(Offset.zero, ancestor: this.context.findRenderObject()).dy;
-          scrollController.animateTo(
-            scrollController.offset + offset,
-            duration: const Duration(milliseconds: 600),
-            curve: Curves.easeInOut,
-          );
-          return false;
-        }
-      }
-
-      await Future.delayed(const Duration(milliseconds: 100));
-      return true;
-    });
-  }
-
-  void scrollToSectionByName(String section) {
-    switch (section) {
-      case 'home':
-        scrollToSection(homeKey);
-        break;
-      case 'about':
-        scrollToSection(aboutKey);
-        break;
-      case 'services':
-        scrollToSection(servicesKey);
-        break;
-      case 'sectors':
-        scrollToSection(sectorsKey);
-        break;
-      case 'contact':
-        scrollToSection(contactKey);
-        break;
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
     }
-  }
-
-  void openDrawer() {
-    Scaffold.of(context).openDrawer();
   }
 
   @override
@@ -85,25 +40,36 @@ class _MyHomePageState extends State<MyHomePage> {
     final isMobile = ResponsiveBreakpoints.of(context).isMobile;
 
     return Scaffold(
-      drawer: isMobile ? Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: AppColors.scaffoldColor),
-              child: Image.asset(
-                'assets/images/apple-touch-icon.png',
-                fit: BoxFit.contain,
+      drawer: isMobile
+          ? Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  DrawerHeader(
+                    decoration:
+                        const BoxDecoration(color: AppColors.scaffoldColor),
+                    child: Image.asset(
+                      'assets/images/apple-touch-icon.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  _DrawerNavItem(
+                      label: 'Home', onTap: () => _handleDrawerNav(homeKey)),
+                  _DrawerNavItem(
+                      label: 'About', onTap: () => _handleDrawerNav(aboutKey)),
+                  _DrawerNavItem(
+                      label: 'Services',
+                      onTap: () => _handleDrawerNav(servicesKey)),
+                  _DrawerNavItem(
+                      label: 'Sectors',
+                      onTap: () => _handleDrawerNav(sectorsKey)),
+                  _DrawerNavItem(
+                      label: 'Contact Us',
+                      onTap: () => _handleDrawerNav(contactKey)),
+                ],
               ),
-            ),
-            _DrawerNavItem(label: 'Home', onTap: () => _handleDrawerNav(homeKey)),
-            _DrawerNavItem(label: 'About', onTap: () => _handleDrawerNav(aboutKey)),
-            _DrawerNavItem(label: 'Services', onTap: () => _handleDrawerNav(servicesKey)),
-            _DrawerNavItem(label: 'Sectors', onTap: () => _handleDrawerNav(sectorsKey)),
-            _DrawerNavItem(label: 'Contact Us', onTap: () => _handleDrawerNav(contactKey)),
-          ],
-        ),
-      ) : null,
+            )
+          : null,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(isMobile ? 60.h : 120.h),
         child: AppBar(
@@ -131,11 +97,19 @@ class _MyHomePageState extends State<MyHomePage> {
               : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _NavButton(label: 'Home', onTap: () => scrollToSection(homeKey)),
-                    _NavButton(label: 'About', onTap: () => scrollToSection(aboutKey)),
-                    _NavButton(label: 'Services', onTap: () => scrollToSection(servicesKey)),
-                    _NavButton(label: 'Sectors', onTap: () => scrollToSection(sectorsKey)),
-                    _NavButton(label: 'Contact Us', onTap: () => scrollToSection(contactKey)),
+                    _NavButton(
+                        label: 'Home', onTap: () => scrollToSection(homeKey)),
+                    _NavButton(
+                        label: 'About', onTap: () => scrollToSection(aboutKey)),
+                    _NavButton(
+                        label: 'Services',
+                        onTap: () => scrollToSection(servicesKey)),
+                    _NavButton(
+                        label: 'Sectors',
+                        onTap: () => scrollToSection(sectorsKey)),
+                    _NavButton(
+                        label: 'Contact Us',
+                        onTap: () => scrollToSection(contactKey)),
                   ],
                 ),
         ),
@@ -156,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _handleDrawerNav(GlobalKey key) {
-    Navigator.of(context).pop(); // Close the drawer
+    Navigator.of(context).pop(); // Close drawer
     scrollToSection(key);
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '/router.dart';
+import 'screen/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +18,10 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp.router(
+        return MaterialApp(
           title: 'ASPY',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: true),
-          routerConfig: router,
           builder: (context, child) => ResponsiveBreakpoints.builder(
             child: child!,
             breakpoints: const [
@@ -32,6 +31,7 @@ class MyApp extends StatelessWidget {
               Breakpoint(start: 1201, end: double.infinity, name: 'XL'),
             ],
           ),
+          home: const MyHomePage(), // ✅ fixed
         );
       },
     );

@@ -214,7 +214,7 @@ class _FirstPageImageState extends State<FirstPageImage>
     final screenWidth = MediaQuery.of(context).size.width;
 
     final double height;
-    final double scale = 1.5;
+    const double scale = 1.5;
 
     if (screenWidth >= 1440) {
       height = 900.h;

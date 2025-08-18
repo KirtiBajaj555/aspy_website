@@ -1,5 +1,4 @@
 import '/bloc/screen_offset.dart';
-import '/constant/color.dart';
 import '/screen/widget/text_reveal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
