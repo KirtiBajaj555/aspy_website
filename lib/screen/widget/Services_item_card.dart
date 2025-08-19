@@ -100,6 +100,8 @@ class _FlipItemCardState extends State<FlipItemCard> {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
+                height: 1.5,          // added tighter line spacing
+                letterSpacing: 0.5,   // slight letter spacing
               ),
               textAlign: TextAlign.center,
             ),
@@ -133,7 +135,8 @@ class _FlipItemCardState extends State<FlipItemCard> {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    height: 1.5,
+                    height: 1.5,        // tighter line spacing
+                    letterSpacing: 0.2,  // slight letter spacing
                   ),
                   textAlign: TextAlign.left,
                 ),

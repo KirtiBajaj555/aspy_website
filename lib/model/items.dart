@@ -19,6 +19,7 @@ Direct Tax Services:
 • Advance Tax Calculation & Payment Support
 • Tax planning - Corporate and Non-Corporate
 • TDS Compliance & Return Filing (Form 26Q, 24Q, etc.)
+• Representation in GST and Income Tax Scrutiny Cases
 • Structuring employee emoluments
 • Bulk filing of employee returns
 • Fringe Benefit Tax compliances
@@ -27,7 +28,6 @@ Indirect Tax Services:
 • GST Registration and Timely Return Filing, ITC, Reconciliation.
 • Compliance with Foreign Trade Policies
 • Cross-border Tax Compliance & Transfer Pricing
-• Representation in GST and Income Tax Scrutiny Cases
 • Advisory on GST Impact for Mergers & Supply Chain
 • Compliance with Foreign Trade Policy (FTP) under DGFT
 ''',
@@ -38,6 +38,10 @@ Indirect Tax Services:
     subtitle:'''• Company registration and incorporation
 • Documentation and ROC filing for compliance
 • Drafting Subscription and Shareholders Agreements
+•Handling Income Tax and GST scrutiny 
+•Appeal filing for GST and Income Tax matters and presentation
+•Assistance in ITAT/GSTAT litigation matters
+•RERA litigation handling.
 • Drafting legal and business agreements
 • Setup of branch, liaison, or project offices in India
 
@@ -51,12 +55,14 @@ Litigation Services:
 
   Item(
     image: 'assets/images/trend.png',
-    title: 'Finance & Accounting',
-    subtitle:'''• Finance & Accounts management
-• Project  Finance 
-• Direct and indirect tax compliance
+    title: 'Finance & Management',
+    subtitle:'''• Finance & management
 • Fixed assets management
 • Reconciliation: parties, banks, intercompanies
+• Project  Financing
+• Startup Registration and Financing 
+• Startup 80-AIC registrations
+• Charitable trust registrations u/s 12A/12AB
 • MIS reporting and budgeting
 • Vendor management
 • Cash flow and fund flow management
@@ -68,6 +74,7 @@ Litigation Services:
     title: 'Valuation Services',
     subtitle:'''• Valuation under Companies Act for shares, mergers, demergers, and liquidation.
 • IBC valuations during insolvency and voluntary liquidation.
+• RERA registration and Financing 
 • SEBI-related valuations for delisting, ESOPs, takeovers, and compliance.
 • RBI/FEMA valuations for FDI, FPI, cross-border deals, and asset sales.
 • Income Tax valuations under Section 56, 50CA, etc.

@@ -20,7 +20,9 @@ class _NinthSectionState extends State<NinthSection> {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 10),
+          horizontal: MediaQuery.of(context).size.width * 0.1,
+          vertical: 10,
+        ),
         child: Column(
           children: [
             Row(
@@ -31,11 +33,9 @@ class _NinthSectionState extends State<NinthSection> {
                   children: [
                     Image.asset(
                       'assets/images/favicon.png',
-                      height: 40,
+                      height: 90, // 🔥 Increased logo size
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     const Text(
                       '.',
                       style: TextStyle(
@@ -43,7 +43,7 @@ class _NinthSectionState extends State<NinthSection> {
                         fontSize: 12,
                         color: Colors.black,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const Column(
@@ -57,9 +57,7 @@ class _NinthSectionState extends State<NinthSection> {
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    SizedBox(height: 15),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -82,12 +80,10 @@ class _NinthSectionState extends State<NinthSection> {
                       ],
                     )
                   ],
-                )
+                ),
               ],
             ),
-            const SizedBox(
-              height: 30,
-            )
+            const SizedBox(height: 30),
           ],
         ),
       ),
